@@ -7,9 +7,30 @@ typedef struct Posicao {
     int coluna;
 }Posicao;
 
-int verifica (Posicao posicaoAtual, int entradaLinha, int entradaColuna) {
-    if(entradaLinha == posicaoAtual.linha && entradaColuna == posicaoAtual.coluna )
-        return true;
+int ehDiagonal (Posicao atual, Posicao desejada) {
+
+    if ( desejada.linha == atual.linha - 1 && desejada.coluna == atual.coluna - 1 ) return true;
+    if ( desejada.linha == atual.linha + 1 && desejada.coluna == atual.coluna - 1 ) return true;
+    if ( desejada.linha == atual.linha - 1 && desejada.coluna == atual.coluna + 1 ) return true;
+    if ( desejada.linha == atual.linha + 1 && desejada.coluna == atual.coluna + 1 ) return true;
+
+    return false;
+}
+int ehLateral (Posicao atual, Posicao desejada) {
+
+    if ( desejada.linha == atual.linha - 1 && desejada.coluna == atual.coluna ) return true;
+    if ( desejada.linha == atual.linha + 1 && desejada.coluna == atual.coluna ) return true;
+    if ( desejada.linha == atual.linha && desejada.coluna == atual.coluna + 1 ) return true;
+    if ( desejada.linha == atual.linha && desejada.coluna == atual.coluna + 1 ) return true;
+ 
+    return false;
+}
+
+int verificaVizinho (Posicao atual, Posicao desejada) {
+
+    if (ehDiagonal(atual, desejada)) return true;
+
+    if (ehLateral(atual, desejada)) return true;
 
     return false; 
 }
