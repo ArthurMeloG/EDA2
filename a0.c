@@ -9,7 +9,7 @@
 typedef struct Posicao {
     int linha;
     int coluna;
-}Posicao;
+} Posicao;
 
 
 int ehDiagonal (Posicao atual, Posicao desejada) {
@@ -21,6 +21,8 @@ int ehDiagonal (Posicao atual, Posicao desejada) {
 
     return false;
 }
+
+
 int ehLateral (Posicao atual, Posicao desejada) {
 
     if ( desejada.linha == atual.linha - 1 && desejada.coluna == atual.coluna ) return true;
@@ -31,6 +33,7 @@ int ehLateral (Posicao atual, Posicao desejada) {
     return false;
 }
 
+
 int verificaVizinho (Posicao atual, Posicao desejada) {
 
     if (ehDiagonal(atual, desejada)) return true;
@@ -39,7 +42,6 @@ int verificaVizinho (Posicao atual, Posicao desejada) {
 
     return false; 
 }
-
 
 
 void fazSonda (long int L, long int C, long int EDAzinhos) {
