@@ -50,7 +50,6 @@ int tamanhoInt(int entrada) {
     int casasDecimais = 0;
     for (int dividendo = divisor / 10; dividendo > 1 ; divisor = divisor / 10) casasDecimais++;
 
-<<<<<<< HEAD
     return casasDecimais;
 }
 
@@ -65,9 +64,6 @@ int transformaParaVetor(int linha, int coluna) {
 
     return index;
 }
-=======
-void fazSonda (long int L, long int C, long int EDAzinhos) {
->>>>>>> 4eef5ceaefca5ef7f3a2142fd6b3c54f0d6f4fe0
 
 void fazSonda (long int L, long int C, Elemento matriz ) {
     verificaVizinho(matriz, L, C);
