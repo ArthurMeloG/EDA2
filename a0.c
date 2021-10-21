@@ -1,49 +1,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #define true 1
 #define false 0
 
+typedef struct Elemento {
+    int sondado;
+    int dominado;
+}Elemento;
 
-typedef struct Posicao {
-    int linha;
-    int coluna;
-}Posicao;
 
+Elemento verificaVizinho (Elemento vetor, int linha, int  coluna) {
 
-int ehDiagonal (Posicao atual, Posicao desejada) {
+        Elemento result;
+    if ( matriz[linha - 1][coluna - 1].dominado ) 
+        result = matriz[linha - 1][coluna - 1];
 
-    if ( desejada.linha == atual.linha - 1 && desejada.coluna == atual.coluna - 1 ) return true;
-    if ( desejada.linha == atual.linha + 1 && desejada.coluna == atual.coluna - 1 ) return true;
-    if ( desejada.linha == atual.linha - 1 && desejada.coluna == atual.coluna + 1 ) return true;
-    if ( desejada.linha == atual.linha + 1 && desejada.coluna == atual.coluna + 1 ) return true;
+    else if ( matriz[linha + 1][coluna - 1].dominado )
+        matriz[linha + 1][coluna - 1];
 
-    return false;
+    else if ( matriz[linha - 1][coluna + 1].dominado )
+        matriz[linha - 1][coluna + 1];
+
+    else if ( matriz[linha + 1][coluna + 1].dominado )
+        result = matriz[linha + 1][coluna + 1];
+
+    else if ( matriz[linha - 1][coluna].dominado )
+        result = matriz[linha - 1][coluna];
+
+    else if ( matriz[linha + 1][coluna].dominado )
+        result = matriz[linha + 1][coluna];
+
+    else if ( matriz[linha][coluna - 1].dominado )
+        result = matriz[linha][coluna - 1];
+
+    else if ( matriz[linha][coluna + 1].dominado )
+        result = matriz[linha][coluna + 1];
+
+    else
+        result
+
+     return result;
 }
-int ehLateral (Posicao atual, Posicao desejada) {
 
-    if ( desejada.linha == atual.linha - 1 && desejada.coluna == atual.coluna ) return true;
-    if ( desejada.linha == atual.linha + 1 && desejada.coluna == atual.coluna ) return true;
-    if ( desejada.linha == atual.linha && desejada.coluna == atual.coluna + 1 ) return true;
-    if ( desejada.linha == atual.linha && desejada.coluna == atual.coluna + 1 ) return true;
- 
-    return false;
+int tamanhoInt(int entrada) {
+    int divisor = entrada;
+    int casasDecimais = 0;
+    for (int dividendo = divisor / 10; dividendo > 1 ; divisor = divisor / 10) casasDecimais++;
+
+    return casasDecimais;
 }
 
-int verificaVizinho (Posicao atual, Posicao desejada) {
+int transformaParaVetor(int linha, int coluna) {
 
-    if (ehDiagonal(atual, desejada)) return true;
+    int expoenteLinha =  tamanhoInt(linha);
+    int expoenteColuna = tamanhoInt(coluna);
 
-    if (ehLateral(atual, desejada)) return true;
+    int qtdCasasDecimais = expoenteLinha + expoenteColuna;
 
-    return false; 
+    int index = pow(10, qtdCasasDecimais) * linha;
+
+    return index;
 }
 
-
-
-void fazSonda (long int L, long int C, long int EDAzinhos) {
-
+void fazSonda (long int L, long int C, Elemento matriz ) {
+    verificaVizinho(matriz, L, C);
 }
 
 
@@ -61,10 +84,11 @@ int main () {
         scanf ( "%ld %ld", &L, &C );
 
         if ( strcmp ( opcao, "sondar") == false ) {
-            fazSonda ( L, C, EDAzinhos );
+            fazSonda ( L, C, matriz );
         }
 
         if ( strcmp ( opcao, "dominar" ) == false ) {
+            dominar()
             break;
         }
 
