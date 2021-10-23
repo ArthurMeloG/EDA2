@@ -1,9 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #define true 1
 #define false 0
+
+typedef struct Elem {
+    int vetor[9];
+}Elem;
+
+int tamanhoNum(int entrada) {
+    int divisor = entrada;
+    int casasDecimais = 0;
+
+    while(divisor >= 1){
+        divisor = divisor / 10;
+        casasDecimais++;
+    }
+
+    return casasDecimais;
+}
+
+int pot (base, expoente) {
+    int i = 0;
+    int result = base;
+    while (i < expoente - 1){
+        result = base * result;
+        i++;
+    }
+    return result;
+}
+
+int concatena(int linha, int coluna) {
+
+    int expoente = tamanhoNum(coluna);
+
+    int  produto = pot(10, expoente) * linha;
+
+    int concatenado = produto + coluna;
+
+    return concatenado;
+}
+
+int hashFunction (Elem vetor[], int codigo, int linha, int coluna) {
+
+    int hashCode = concatena (linha, coluna);
+    int index;
+    if(hashCode > 100)
+        vetor[hashCode].vetor[0] = codigo;
+
+    else
+        index = hashCode % 9;
+        vetor[hashCode].vetor[index] = codigo;
+
+}
 
 
 void randTest ( int mapa[300][300] ) {    
@@ -21,18 +72,18 @@ void imprimeMapa ( int mapa[300][300] ) {
 }
 
 
-void primeiraSonda ( int jogo[300][300], int L, int C ) {
+void primeiraSonda ( Elem jogo[], int L, int C ) {
 
-    jogo[L][C] = 3;
+    hashFunction ( jogo, 3, L, C );
+    hashFunction ( jogo, 1, L, C + 1 );
+    hashFunction ( jogo, 1, L, C - 1 );
+    hashFunction ( jogo, 1, L + 1, C );
+    hashFunction ( jogo, 1, L + 1, C - 1 );
+    hashFunction ( jogo, 1, L + 1, C + 1 );
+    hashFunction ( jogo, 1, L - 1, C );
+    hashFunction ( jogo, 1, L - 1, C + 1 );
+    hashFunction ( jogo, 1, L - 1, C - 1 );
 
-    jogo [L-1] [C-1] = 1; // 1
-    jogo [L-1] [C]   = 1; // 2
-    jogo [L]   [C-1] = 1; // 3
-    jogo [L+1] [C-1] = 1; // 4
-    jogo [L+1] [C]   = 1; // 5
-    jogo [L-1] [C+1] = 1; // 6
-    jogo [L]   [C+1] = 1; // 7
-    jogo [L+1] [C+1] = 1; // 8
 }
 
 
@@ -77,7 +128,7 @@ int main () {
 
     int L, C, P, T, EDAzinhos = 1, pontos;
     int mapa[300][300];
-    int jogo[300][300];
+    int jogo[3000];
     char opcao[20];
     int pontuacaoTotal = 0;
     randTest ( mapa );
