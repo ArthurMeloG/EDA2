@@ -78,24 +78,26 @@ int main () {
     scanf ( "%ld %ld %ld %ld", &L, &C, &P, &T );
     pontos = P;
 
-    for (int i = 0; i < T; i++) {
+    for ( int i = 0; i < T; i++ ) {
 
-        scanf ( "%s", opcao );
-        scanf ( "%ld %ld", &L, &C );
+        printf ("==== TURNO %d\n", i);
 
-        if ( strcmp ( opcao, "sondar") == false ) {
-            fazSonda ( L, C, matriz );
+        for ( int j = 0; j < EDAzinhos; j++ ) {
+            
+            scanf ( "%s", opcao );
+            scanf ( "%d %d", &L, &C );
+
+            if ( opcao[0] == 's' ) {
+                // verifica se já não foi sondada
+                // verifica se é possível sondar
+                // retorna a pontuação da casa sondada
+            }
+
+            if ( opcao[0] == 'd' ) {
+                printf( "DOMINAR\n" );
+            }
         }
-
-        if ( strcmp ( opcao, "dominar" ) == false ) {
-            dominar()
-            break;
-        }
-
-        else {
-
-        }
-    }
+    }   
 
     return 0;
 }
